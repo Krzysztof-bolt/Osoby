@@ -2,6 +2,7 @@
 using Biblioteka;
 using System.Security.Cryptography;
 
+//tworzenie lini
 void Linia()
 {
     for (int i = 0; i <= 100; i++)
@@ -11,6 +12,7 @@ void Linia()
     WriteLine();
 }
 
+//tworzenie obiektu klasy osoba
 Osoba o1 = new Osoba();
 WriteLine(o1.ToString());
 
@@ -48,7 +50,7 @@ for(int dziecko = 0; dziecko < o1.Dzieci.Count; dziecko++)
 }
 
 Linia();
-
+//tworzenie obiektu klasy KontoBankowe
 KontoBankowe.Oprocentowanie = 0.012M;
 
 KontoBankowe kb1 = new();
@@ -100,6 +102,7 @@ o1.WypiszWKonsoli();
 WriteLine(o1.PodajPochodzenie());
 
 Linia();
+//krotki
 
 (string, int) owoc = o1.WezOwoce();
 WriteLine($"{owoc.Item1}, jest ich {owoc.Item2}");
@@ -115,3 +118,22 @@ WriteLine($"{krotka2.Nazwisko} ma {krotka2.Count} dzieci");
 
 (string nazwaOwocu, int liczbaOwocow) = o1.WezOwoce();
 WriteLine($"Po dekonstrukcji: {nazwaOwocu}, {liczbaOwocow}");
+
+Linia();
+//dekonstrukcja osoby
+
+var (nazwisko1, dataUrodzenia1) = o1;
+WriteLine($"Po dekonstrukcji: {nazwisko1}, {dataUrodzenia1}");
+
+var (nazwisko2, dataUrodzenia2, ulubiony2) = o1;
+WriteLine($"Po dekonstrukcji: {nazwisko2}, {dataUrodzenia2}, {ulubiony2}");
+
+Linia();
+//Sterowanie przekazywaniem parametrow
+
+WriteLine(o1.PowiedzCzesc());
+WriteLine(o1.PowiedzCzesc("Kuba"));
+
+//Parametry opcjonalne
+WriteLine(o1.ParametryOpcjonalne());
+WriteLine(o1.ParametryOpcjonalne("Skacz!", 98.5));
