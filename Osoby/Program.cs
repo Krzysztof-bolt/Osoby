@@ -137,3 +137,15 @@ WriteLine(o1.PowiedzCzesc("Kuba"));
 //Parametry opcjonalne
 WriteLine(o1.ParametryOpcjonalne());
 WriteLine(o1.ParametryOpcjonalne("Skacz!", 98.5));
+WriteLine(o1.ParametryOpcjonalne(liczba: 52.7, polecenie: "Kryj sie!"));
+WriteLine(o1.ParametryOpcjonalne("Siadaj!", aktywne: false));
+
+//Parametry out/ref
+
+int a = 10;
+int b = 20;
+int c = 30;
+
+WriteLine($"Przed: a = {a}, b = {b}, c = {c}");
+o1.PrzekazywanieParametrow(a, ref b, out c);
+WriteLine($"Po: a = {a}, b = {b}, c = {c}");
