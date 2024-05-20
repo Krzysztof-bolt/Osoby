@@ -1,6 +1,7 @@
 ﻿using BibliotekaWspolna;
 using Biblioteka;
 using System.Security.Cryptography;
+using System.Runtime.InteropServices;
 
 //tworzenie lini
 void Linia()
@@ -149,3 +150,44 @@ int c = 30;
 WriteLine($"Przed: a = {a}, b = {b}, c = {c}");
 o1.PrzekazywanieParametrow(a, ref b, out c);
 WriteLine($"Po: a = {a}, b = {b}, c = {c}");
+
+//Uproszczenie uzyica parametru out
+
+int d =10;
+int e = 20;
+WriteLine($"Przed: d = {d}, e = {e}, f jeszcze nie istnieje");
+
+o1.PrzekazywanieParametrow(d, ref e, out int f);
+WriteLine($"Po: d = {d}, e = {e}, f = {f}");
+
+Linia();
+
+//Kontorla dostepu, wlasciwoci/indeksery
+
+Osoba staszek = new()
+{
+    Nazwisko = "Stanislaw",
+    DataUrodzenia = new DateTime(1972, 1, 27)
+};
+
+WriteLine(staszek.Pochodzenie);
+WriteLine(staszek.Pozdrowienie);
+WriteLine(staszek.Wiek);
+
+//wlasciwosci z mozliwoscia przypisania
+
+staszek.UlubioneLody = "czekoladowe";
+WriteLine($"Stanislaw najchetniej je lody {staszek.UlubioneLody}");
+
+string kolor = "zolty";
+
+try
+{
+    staszek.UlubionyKolorPodstawowy = kolor;
+    WriteLine($"Stansilaw najbardiej lubi kolor {staszek.UlubionyKolorPodstawowy}");
+}
+catch (Exception ex)
+{
+    WriteLine("Proba przypisania wartosci '{0}' do wlasciwosci '{1}': {2}", kolor, nameof(staszek.UlubionyKolorPodstawowy), ex.Message);
+}
+
