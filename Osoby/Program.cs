@@ -1,4 +1,5 @@
 ﻿using BibliotekaWspolna;
+using BibliotekaNowoczesna;
 using Biblioteka;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
@@ -190,4 +191,14 @@ catch (Exception ex)
 {
     WriteLine("Proba przypisania wartosci '{0}' do wlasciwosci '{1}': {2}", kolor, nameof(staszek.UlubionyKolorPodstawowy), ex.Message);
 }
+Linia();
+//obiekt klasy ksiazka
 
+Ksiazka ksiazka = new()
+{
+    Isbn = "123-4567890123",
+    Tytul = "C# i .NET 7. Tworzenie nowoczesnych aplikacji"
+};
+
+WriteLine("{0}: {1}, autor: {2} wielkosc: {3:NO} stron.",
+    ksiazka.Isbn, ksiazka.Tytul, ksiazka.Autor, ksiazka.LiczbaStron);

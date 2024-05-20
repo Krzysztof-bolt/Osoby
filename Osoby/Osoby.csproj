@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,6 +12,11 @@
       <HintPath>..\..\BibliotekaNetStandard2\BibliotekaNetStandard2\bin\Debug\netstandard2.0\BibliotekaNetStandard2.dll</HintPath>
     </Reference>
   </ItemGroup>
+	<ItemGroup>
+		<Reference Include="BibliotekaNowoczesna">
+			<HintPath>..\..\BibliotekaNowoczesna\BibliotekaNowoczesna\bin\Debug\net7.0\BibliotekaNowoczesna.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 	<ItemGroup>
 		<Using Include="System.Console" Static="true"/>
 	</ItemGroup>
