@@ -193,12 +193,82 @@ catch (Exception ex)
 }
 Linia();
 //obiekt klasy ksiazka
-
+/*
 Ksiazka ksiazka = new()
 {
     Isbn = "123-4567890123",
     Tytul = "C# i .NET 7. Tworzenie nowoczesnych aplikacji"
 };
+*/
+
+Ksiazka ksiazka = new(isbn: "123-4567890123", tytul: "C# i .NET 7. Tworzenie nowoczesnych aplikacji")
+{
+    Autor = "Mark J. Price",
+    LiczbaStron = 821
+};
 
 WriteLine("{0}: {1}, autor: {2} wielkosc: {3:NO} stron.",
     ksiazka.Isbn, ksiazka.Tytul, ksiazka.Autor, ksiazka.LiczbaStron);
+
+Linia();       
+
+//Indeksery
+
+staszek.Dzieci.Add(new Osoba { Nazwisko = "Karol", DataUrodzenia = new(2010, 3, 18) });
+staszek.Dzieci.Add(new Osoba { Nazwisko = "Zosia", DataUrodzenia = new(2020, 12, 24) });
+
+//Pobieranie danych z wlasciwosci dzeici
+WriteLine($"Pierwsze dziecko Stanislawa to {staszek.Dzieci[0].Nazwisko}");
+WriteLine($"Drugie dziecko Stanislawa to {staszek.Dzieci[1].Nazwisko}");
+
+//Pobieranie danych z indeksu pozycji
+WriteLine($"Piersze dziecko Stanislawa to {staszek[0].Nazwisko}");
+WriteLine($"Drugie dziecko Stanisalwa to {staszek[1].Nazwisko}");
+
+//Pobieranie danych z indeksera nazwisk
+WriteLine($"Dziecko Staszka o imieniu Zosia ma juz {staszek["Zosia"].Wiek} lata.");
+
+Osoba lamech = new() { Nazwisko = "Lamech" };
+Osoba ada = new() { Nazwisko = "Ada" };
+Osoba silla = new() { Nazwisko = "Silla" };
+lamech.Poslub(ada);
+Osoba.Poslub(silla, lamech);
+
+if (silla + lamech)
+{
+    WriteLine($"{silla.Nazwisko} i {lamech.Nazwisko} sa teraz malzenstwem");
+}
+
+//wywolanie operatora
+
+Osoba dziecko3 = lamech * ada;
+dziecko3.Nazwisko = "Jubal";
+
+Osoba dziecko4 = lamech * silla;
+dziecko4.Nazwisko = "Naama";
+
+WriteLine($"{lamech.Nazwisko} jest mezem {lamech.Malzonek?.Nazwisko ?? "nikogo"}");
+WriteLine($"{ada.Nazwisko} jest zona {ada.Malzonek?.Nazwisko ?? "nikogo"}");
+WriteLine($"{silla.Nazwisko} jest zona {silla.Malzonek?.Nazwisko ?? "nikogo"}");
+
+//wywolanie metody obiektu
+Osoba dziecko1 = lamech.ProkreacjaZ(ada);
+dziecko1.Nazwisko = "Jubal";
+WriteLine($"{dziecko1.Nazwisko} urodzil sie {dziecko1.DataUrodzenia}");
+
+//wywolanie metodu statycznej
+Osoba dzicko2 = Osoba.Prokreacja(silla, lamech);
+dzicko2.Nazwisko = "Tubal-Kain";
+
+WriteLine($"{lamech.Nazwisko} ma {lamech.Dzieci.Count} dzieci");
+WriteLine($"{ada.Nazwisko} ma {ada.Dzieci.Count} dzieci");
+WriteLine($"{silla.Nazwisko} ma {silla.Dzieci.Count} dzieci");
+
+for(int i = 0; i < lamech.Dzieci.Count; i++)
+{
+    WriteLine(format: "{0} ma dziecko nr {1} o imieniu {2}",
+        arg0: lamech.Nazwisko,
+        arg1: i,
+        arg2: lamech.Dzieci[i].Nazwisko);
+}
+
