@@ -4,6 +4,7 @@ using Biblioteka;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 
+
 //tworzenie lini
 void Linia()
 {
@@ -272,3 +273,83 @@ for(int i = 0; i < lamech.Dzieci.Count; i++)
         arg2: lamech.Dzieci[i].Nazwisko);
 }
 
+Linia();
+
+int liczba = 5;
+
+try
+{
+    WriteLine($"{liczba}! rowna sie {Osoba.Silnia(liczba)}");
+}
+catch (Exception ex)
+{
+    WriteLine($"{ex.GetType()} z komunikatem : {ex.Message} Otrzymano liczbe {liczba}");
+}
+
+Linia();
+
+int liczba2 = -1;
+
+try
+{
+    WriteLine($"{liczba2}! rowna sie {Osoba.Silnia(liczba2)}");
+}
+catch (Exception ex)
+{
+    WriteLine($"{ex.GetType()} z komunikatem : {ex.Message} Otrzymano liczbe {liczba2}");
+}
+
+Linia();
+
+object[] pasazerowie =
+{
+    new PasazerKlasyPierwszej {Mile = 1_419, Nazwisko = "Nowak"},
+    new PasazerKlasyPierwszej {Mile = 16_562, Nazwisko = "Kowalski"},
+    new PasazerKlasyBiznesowej { Nazwisko = "Janiak"},
+    new PasazerKlasyEkonomicznej {BagazPodreczny = 25.7, Nazwisko = "Szmit"},
+    new PasazerKlasyEkonomicznej {BagazPodreczny = 0, Nazwisko = "Adamski"},
+};
+
+/*
+//Kod skladni C# 8
+foreach ( object pasazer in pasazerowie )
+{
+    decimal kosztPrzelotu = pasazer switch
+    {
+        PasazerKlasyPierwszej p when p.Mile > 35000 => 1500M,
+        PasazerKlasyPierwszej p when p.Mile > 15000 => 1750M,
+        PasazerKlasyPierwszej _ => 2000M,
+        PasazerKlasyBiznesowej _ => 1000m,
+        PasazerKlasyEkonomicznej p when p.BagazPodreczny < 10.0 => 500M,
+        PasazerKlasyEkonomicznej _ => 650M,
+        _ => 800M
+    };
+
+    WriteLine($"Lot pasazera {pasazer} kosztuje {kosztPrzelotu:C}");
+}
+*/
+
+decimal kosztPrzelotu = pasazer switch
+{
+    PasazerKlasyPierwszej p => p.Mile switch
+    {
+        > 35000 => 1500M,
+        > 15000 => 1750M,
+        _ => 2000M
+    },
+
+    PasazerKlasyBiznesowej => 1000M,
+    PasazerKlasyEkonomicznej p when p.BagazPodreczny < 10.0 => 500M,
+    PasazerKlasyEkonomicznej => 650M,
+    _ => 800M
+};
+
+Linia();
+
+NiezmiennaOsoba jurek = new()
+{
+    Imie = "Jurek",
+    Nazwisko = "Wiurek"
+};
+
+//jurek.Imie = "Grzes"; //nie zadziala, zastosowany init
